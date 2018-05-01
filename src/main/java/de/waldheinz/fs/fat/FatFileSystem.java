@@ -49,7 +49,7 @@ public final class FatFileSystem extends AbstractFileSystem {
 
     FatFileSystem(BlockDevice api, boolean readOnly) throws IOException {
 
-        this(api, readOnly, false);
+        this(api, readOnly, true);
     }
     
     /**
@@ -237,42 +237,50 @@ public final class FatFileSystem extends AbstractFileSystem {
     }
 
     /**
-     * The free space of this file system.
-     *
-     * @return if -1 this feature is unsupported
+     * <p>
+     * {@inheritDoc}
+     * </p><p>
+     * This method is currently not implemented for {@code FatFileSystem} and
+     * always returns -1.
+     * </p>
+     * 
+     * @return always -1
      */
     @Override
     public long getFreeSpace() {
-        checkClosed();
-
-        return fat.getFreeClusterCount() * bs.getBytesPerCluster();
-    }
-
-    /**
-     * The total size of this file system.
-     *
-     * @return if -1 this feature is unsupported
-     */
-    @Override
-    public long getTotalSpace() {
-        checkClosed();
-
-        if (fatType == FatType.FAT32) {
-            return bs.getNrTotalSectors() * bs.getBytesPerSector();
-        }
-
+        // TODO implement me
         return -1;
     }
 
     /**
-     * The usable space of this file system.
+     * <p>
+     * {@inheritDoc}
+     * </p><p>
+     * This method is currently not implemented for {@code FatFileSystem} and
+     * always returns -1.
+     * </p>
      *
-     * @return if -1 this feature is unsupported
+     * @return always -1
+     */
+    @Override
+    public long getTotalSpace() {
+        // TODO implement me
+        return -1;
+    }
+
+    /**
+     * <p>
+     * {@inheritDoc}
+     * </p><p>
+     * This method is currently not implemented for {@code FatFileSystem} and
+     * always returns -1.
+     * </p>
+     *
+     * @return always -1
      */
     @Override
     public long getUsableSpace() {
-        checkClosed();
-
-        return bs.getDataClusterCount() * bs.getBytesPerCluster();
+        // TODO implement me
+        return -1;
     }
 }
